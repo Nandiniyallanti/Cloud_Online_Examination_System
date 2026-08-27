@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Admin Dashboard</h1>
+
+        <h2>Online Examination Management System</h2>
+
+        <p>Welcome, Administrator!</p>
+
+        <hr>
+
+        <h3>Examination Details</h3>
+
+        <p>
+            <strong>Subject:</strong>
+            Python Programming
+        </p>
+
+        <p>
+            <strong>Total Questions:</strong>
+            10
+        </p>
+
+        <p>
+            <strong>Total Marks:</strong>
+            10
+        </p>
+
+        <p>
+            <strong>Exam Duration:</strong>
+            5 Minutes
+        </p>
+
+        <hr>
+
+        <h3>Student Result</h3>
+
+        <p>
+            <strong>Student Name:</strong>
+            <span id="studentName">No student data</span>
+        </p>
+
+        <p>
+            <strong>Score:</strong>
+            <span id="studentScore">No result</span>
+        </p>
+
+        <p>
+            <strong>Status:</strong>
+            <span id="status">No result</span>
+        </p>
+
+        <hr>
+
+        <h3>Admin Options</h3>
+
+        <button type="button" onclick="viewExam()">
+            View Examination
+        </button>
+
+        <br><br>
+
+        <button type="button" onclick="logoutAdmin()">
+            Admin Logout
+        </button>
+
+    </div>
+
+
+    <script>
+
+        // Get student information
+        const studentName =
+            localStorage.getItem("studentName");
+
+        const score =
+            Number(localStorage.getItem("examScore"));
+
+        const total =
+            Number(localStorage.getItem("totalQuestions")) || 10;
+
+
+        // Display student name
+        if (studentName) {
+
+            document.getElementById("studentName").innerText =
+                studentName;
+
+        }
+
+
+        // Display score
+        if (!isNaN(score)) {
+
+            document.getElementById("studentScore").innerText =
+                score + " / " + total;
+
+
+            // Display status
+            if (score >= 5) {
+
+                document.getElementById("status").innerText =
+                    "Passed";
+
+            } else {
+
+                document.getElementById("status").innerText =
+                    "Needs Improvement";
+
+            }
+
+        }
+
+
+        // View examination
+        function viewExam() {
+
+            window.location.href = "exam.html";
+
+        }
+
+
+        // Admin logout
+        function logoutAdmin() {
+
+            window.location.href = "index.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Exam Result</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Examination Result</h1>
+
+        <h2>Python Programming Test</h2>
+
+        <h3 id="studentName"></h3>
+
+        <h3 id="result">
+            Your Score: 0 / 10
+        </h3>
+
+        <p id="message"></p>
+
+        <br>
+
+        <a href="index.html">
+            <button type="button">Back to Home</button>
+        </a>
+
+        <br><br>
+
+        <button type="button" onclick="newExam()">
+            Start New Examination
+        </button>
+
+    </div>
+
+
+    <script>
+
+        // Get student name
+        const studentName =
+            localStorage.getItem("studentName") || "Student";
+
+        document.getElementById("studentName").innerText =
+            "Student Name: " + studentName;
+
+
+        // Get score
+        const score =
+            Number(localStorage.getItem("examScore")) || 0;
+
+        const totalQuestions =
+            Number(localStorage.getItem("totalQuestions")) || 10;
+
+
+        // Display score
+        document.getElementById("result").innerText =
+            "Your Score: " + score + " / " + totalQuestions;
+
+
+        // Display result message
+        if (score === totalQuestions) {
+
+            document.getElementById("message").innerText =
+                "Excellent! 🎉";
+
+        }
+        else if (score >= 5) {
+
+            document.getElementById("message").innerText =
+                "Good job! 👍";
+
+        }
+        else {
+
+            document.getElementById("message").innerText =
+                "Keep practicing! 📚";
+
+        }
+
+
+        // Start new examination
+        function newExam() {
+
+            localStorage.removeItem("examScore");
+
+            localStorage.removeItem("totalQuestions");
+
+            localStorage.removeItem("studentName");
+
+            window.location.href = "login.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
